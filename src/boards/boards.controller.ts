@@ -39,7 +39,7 @@ export class BoardsController {
 
   @Get('/:id')
   getBoardById(@Param('id') id: number): Promise<Board> {
-    return this.boardsService.getBoardByID(id);
+    return this.boardsService.getBoardById(id);
   }
 
   // @Get('/:id')
@@ -56,6 +56,14 @@ export class BoardsController {
   // deleteBoard(@Param('id') id: string): void {
   //   this.boardsService.deleteBoard(id);
   // }
+
+  @Patch('/:id/status')
+  updateBoardStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('status', BoardStatusValidationPipe) status: BoardStatus,
+  ) {
+    return this.boardsService.updateBoardStatus(id, status);
+  }
 
   // @Patch('/:id/status')
   // updateBoardStatus(
